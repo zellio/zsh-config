@@ -6,10 +6,11 @@
 !LICENSE
 !README.md
 
-!env.zsh
-!init.zsh
-!install.zsh
-!zshrc
+!/env.zsh
+!/init.zsh
+!/install.zsh
+!/zshrc
 
-!/config/ 
-!/theme/ 
+!/config/
+!/theme/
+

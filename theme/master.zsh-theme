@@ -1,0 +1,1 @@
+splat.zsh-theme
