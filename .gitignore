@@ -1,0 +1,15 @@
+/.*
+/*
+
+!.gitignore
+!.gitmodules
+!LICENSE
+!README.md
+
+!env.zsh
+!init.zsh
+!install.zsh
+!zshrc
+
+!/config/ 
+!/theme/ 
