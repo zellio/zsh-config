@@ -9,13 +9,6 @@ export IFS=" \t\n"
 
 export ZSH_ROOT=~/.zsh.d
 
-#/bin/stty intr   '^C'
-#/bin/stty quit   '^\'
-#/bin/stty erase  '^?'
-#/bin/stty eof    '^D'
-#/bin/stty susp   '^Z'
-#/bin/stty werase '^W'
-#/bin/stty flush  '^O'
 
 _stty=`command -v stty`
 
