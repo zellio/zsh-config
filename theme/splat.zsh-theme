@@ -5,4 +5,27 @@ is_ssh_shell() {
 
 # export PROMPT='%B%F{033}[%F{081}%n%F{033}@%F{166}%m%F{033}:%F{147}%~ %F{033}%#]%f%b '
 
-export PROMPT='%F{033}(%F{082}●%F{033}%f●%F{033}) %F{081}%n%F{033}@%F{166}%m%F{033}:%F{147}%~ %F{033}%#%f '%  
+
+
+
+case "$TERM" in
+xterm-256color | fbterm)
+  export PROMPT='%F{033}(%F{082}●%F{033}%f●%F{033}) %F{081}%n%F{033}@%F{166}%m%F{033}:%F{147}%~ %F{033}%#%f '%  
+  ;;
+xterm-color)
+  export PROMPT='%B%F{004}(%F{002}●%F{008}%f●%F{004}) %F{006}%n%F{004}@%F{003}%m%F{004}:%F{005}%~ %F{004}%#%f%b '%  
+  ;;
+*)
+  export PROMPT='%B(●●) %n at %m in %~ >%b '%  
+esac
+
+
+
+# 000: Test
+# 001: Test
+# 002: Test
+# 003: Test
+# 004: Test
+# 005: Test
+# 006: Test
+# 007: Test
