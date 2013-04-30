@@ -21,14 +21,14 @@ typeset -Ag T R S
 
 case "$TERM" in
     xterm-256color | fbterm)
-        T=( BINDER $FG[033] USER $FG[081] HOST $FG[166] PATH $FG[147] )
-        R=( DEV $FG[082] STAGE $FG[226] PROD $FG[196] )
-        S=( LCL "%f" SSH $FG[081] VRT $FG[201] ) 
+        T=( BINDER %F{033} USER %F{081} HOST %F{166} PATH %F{147} )
+        R=( DEV %F{082} STAGE %F{226} PROD %F{196} )
+        S=( LCL %f SSH %F{081} VRT %F{201} ) 
       ;;
     *)
-        T=( BINDER $FG[] USER $FG[] HOST $FG[] PATH $FG[] )
-        R=( DEV $FG[] STAGE $FG[] PROD $FG[] )
-        S=( LCL "%f" SSH $FG[] VRT $FG[] ) 
+        T=( BINDER %F{} USER %F{} HOST %F{} PATH %F{} )
+        R=( DEV %F{} STAGE %F{} PROD %F{} )
+        S=( LCL %f SSH %F{} VRT %F{} ) 
       ;;
 esac
 
