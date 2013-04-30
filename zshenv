@@ -5,7 +5,7 @@
 [ -z "$HOME" ] && export HOME=`grep $USER /etc/passwd | cut -d : -f 6`
 [ -z "$HOSTNAME" ] && export HOSTNAME=`uname -n`
 
-export IFS=" \t\n"
+[ -z "$IFS" ] && export IFS=" \t\n\0"
 
 _stty=`command -v stty`
 
