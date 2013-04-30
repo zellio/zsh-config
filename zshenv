@@ -25,3 +25,4 @@ _stty=`command -v stty`
 unset _stty
 
 export ZSH_ROOT=~/.zsh.d
+export BOX_RISK_LEVEL=2
