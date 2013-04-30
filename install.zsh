@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source env.zsh
+source zshenv 
 
 ln -s "$ZSH_ROOT/zshenv" "$HOME/.zshenv"
 ln -s "$ZSH_ROOT/zshrc" "$HOME/.zshrc"
