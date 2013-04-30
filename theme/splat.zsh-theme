@@ -26,9 +26,9 @@ case "$TERM" in
         S=( LCL %f SSH %F{081} VRT %F{201} ) 
       ;;
     *)
-        T=( BINDER %F{} USER %F{} HOST %F{} PATH %F{} )
-        R=( DEV %F{} STAGE %F{} PROD %F{} )
-        S=( LCL %f SSH %F{} VRT %F{} ) 
+        T=( BINDER %B%F{004} USER %B%F{006} HOST %F{005} PATH %F{002} )
+        R=( DEV %F{002} STAGE %B%F{003} PROD %B%F{001} )
+        S=( LCL %f SSH %F{006} VRT %F{005} ) 
       ;;
 esac
 
@@ -62,7 +62,7 @@ fi
 PROMPT="$PROMPT●"
 
 
-PROMPT="$PROMPT$T[BINDER]) $T[USER]%n$T[BINDER]@$T[HOST]%m$T[BINDER]:$T[PATH]%~ $T[BINDER]%#%f "
+PROMPT="$PROMPT$T[BINDER]) $T[USER]%n$T[BINDER]@$T[HOST]%m$T[BINDER]:$T[PATH]%~ $T[BINDER]%#%f%b "
 export PROMPT
 
 return 0
