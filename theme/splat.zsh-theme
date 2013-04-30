@@ -16,16 +16,5 @@ xterm-color)
   export PROMPT='%B%F{004}(%F{002}●%F{008}%f●%F{004}) %F{006}%n%F{004}@%F{003}%m%F{004}:%F{005}%~ %F{004}%#%f%b '%  
   ;;
 *)
-  export PROMPT='%B(●●) %n at %m in %~ >%b '%  
+  export PROMPT='%n at %m in %~ >%b '%  
 esac
-
-
-
-# 000: Test
-# 001: Test
-# 002: Test
-# 003: Test
-# 004: Test
-# 005: Test
-# 006: Test
-# 007: Test
