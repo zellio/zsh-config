@@ -1,4 +1,3 @@
-
 is_ssh_shell() {
   [ -n "$SSH_CLIENT" -o -n "$SSH_CONNECTION" -o -n "$SSH_TTY" ] && echo "[ssh]"
 }         
@@ -16,5 +15,5 @@ xterm-color)
   export PROMPT='%B%F{004}(%F{002}●%F{008}%f●%F{004}) %F{006}%n%F{004}@%F{003}%m%F{004}:%F{005}%~ %F{004}%#%f%b '%  
   ;;
 *)
-  export PROMPT='%n at %m in %~ >%b '%  
+  export PROMPT='%B%n at %m in %~ >%b '%  
 esac
