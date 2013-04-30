@@ -7,9 +7,6 @@
 
 export IFS=" \t\n"
 
-export ZSH_ROOT=~/.zsh.d
-
-
 _stty=`command -v stty`
 
 "$_stty" intr   '^C' 
@@ -26,3 +23,5 @@ _stty=`command -v stty`
 "$_stty" flush  '^O'
 
 unset _stty
+
+export ZSH_ROOT=~/.zsh.d
