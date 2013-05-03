@@ -4,10 +4,10 @@ case "$1" in
     [Oo][Nn])
         [ -z "$2" ] && f_target="zspool.out" || target="$2"
 
-        export ZSPOOL_TARGET=$(realpath $f_target)
+        export ZSPOOL_TARGET=$(realpath "$f_target")
 
         preexec() {
-            echo "$3" >> $ZSPOOL_TARGET
+            echo "$3" >> "$ZSPOOL_TARGET"
         }
         ;;
     [Oo][Ff][Ff])
@@ -17,6 +17,6 @@ case "$1" in
         ;;
     *)
         cat <<EOF
-usage: ${0##*/} [on|off] filename
+usage: ${0##*/} (on|off) [filename]
 EOF
 esac

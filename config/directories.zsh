@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+
 ### OPTIONS ON ###
 setopt auto_cd
 setopt auto_pushd
@@ -8,39 +9,44 @@ setopt pushd_ignore_dups
 setopt pushd_to_home
 setopt extended_glob
 
-## Dynamicall build $PATH variable ( helps this work across multiple systems )
+
+unset common_paths
 typeset -U common_paths
 common_paths=(
-  ${path/%\//} ${=$(command -p getconf PATH)//:/ }  # base system PATH
-  /bin /sbin /usr/bin /usr/sbin                     # Standard
-  /usr/local/bin /usr/local/sbin                    # FreeBSD
-  /usr/X11R6/bin                                    # X11
-  /usr/pkg/bin /usr/pkg/sbin                        # NetBSD
-  /usr/ucb                                          # Solaris - BSD
-  /usr/sfw/bin /usr/sfw/sbin                        # Solaris - sun free-ware
-  /usr/xpg4/bin /usr/xpg6/bin                       # Solaris - X/Open Portability Guide
-  /opt/local/bin /opt/local/sbin                    # Solaris
-  /opt/SUNWspro/bin                                 # Solaris
-  /usr/ccs/bin                                      # Solaris - C Compilation System
-  /usr/platform/$(uname -i)/sbin                    # Solaris - hardware dependent
-  /var/qmail/bin                                    # qmail - uncomment if desired
-  /usr/games /usr/local/games /usr/games/bin        # fun stuff
-  /sw/bin /sw/sbin /sw/usr/bin /sw/usr/sbin         # Fink 
-  "$HOME/bin"                                       # personal stuff
+    ${path/%\//} ${=$(command -p getconf PATH)//:/ }
+    /usr/bin /bin /usr/sbin /sbin
+    /usr/local/bin /usr/local/sbin
+    /usr/X11R6/bin                                    # X11
+    /usr/pkg/bin /usr/pkg/sbin                        # NetBSD
+    /usr/ucb                                          # Solaris - BSD
+    /usr/sfw/bin /usr/sfw/sbin                        # Solaris - sun free-ware
+    /usr/xpg4/bin /usr/xpg6/bin                       # Solaris - X/Open
+    /opt/local/bin /opt/local/sbin                    # Solaris
+    /opt/SUNWspro/bin                                 # Solaris
+    /usr/ccs/bin                                      # Solaris - C Compilation
+    /usr/platform/$(uname -i)/sbin                    # Solaris - hardware deps
+    /usr/games /usr/local/games /usr/games/bin        # fun stuff
+    /sw/bin /sw/sbin /sw/usr/bin /sw/usr/sbin         # Fink
+    /opt/usr/bin /opt/bin /opt/usr/sbin /opt/sbin     # Darwin Ports
+    "$HOME/bin"                                       # Personal Executables
 )
 
-if [ -n "`command -v gem`" ]; then
-    common_paths=( ${common_paths} "$HOME/.gem/ruby/*/bin" )
+
+if [ -n `command -v gem` ]; then
+    typeset -U gem_paths
+    gem_paths=( ${=$(command -p gem environment gempath)//://bin }/bin )
+    common_paths=( ${common_paths} ${gem_paths} )
+    unset gem_paths
 fi
 
-unset PATH_tmp
-unsetopt NO_MATCH
 
-for node in ${common_paths};do
-  test -d "$node" && PATH_tmp="$PATH_tmp$node:"
+unset PATH node
+for node in ${common_paths}; do
+    if [ -d "$node" ]; then
+        [ -n "$PATH" ] && PATH="$PATH:$node" || PATH="$node"
+    fi
 done
+unset common_paths node
 
-setopt NO_MATCH
-export PATH=${PATH_tmp/%:/}
 
-unset common_paths node PATH_tmp
+export PATH
