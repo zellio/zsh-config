@@ -1,0 +1,22 @@
+local f_target
+
+case "$1" in
+    [Oo][Nn])
+        [ -z "$2" ] && f_target="zspool.out" || target="$2"
+
+        export ZSPOOL_TARGET=$(realpath $f_target)
+
+        preexec() {
+            echo "$3" >> $ZSPOOL_TARGET
+        }
+        ;;
+    [Oo][Ff][Ff])
+        preexec() {
+        }
+        unset ZSPOOL_TARGET
+        ;;
+    *)
+        cat <<EOF
+usage: ${0##*/} [on|off] filename
+EOF
+esac
