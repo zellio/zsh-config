@@ -32,7 +32,7 @@ common_paths=(
 )
 
 
-if [ -n `command -v gem` ]; then
+if [ -n "`command -v gem`" ]; then
     typeset -U gem_paths
     gem_paths=( ${=$(command -p gem environment gempath)//://bin }/bin )
     common_paths=( ${common_paths} ${gem_paths} )
