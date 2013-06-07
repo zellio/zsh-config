@@ -1,24 +1,24 @@
 #!/usr/bin/env zsh
 
-[ -z "$TERM" ] && export TERM=xterm-color
-[ -z "$USER" ] && export USER=`id -un`
-[ -z "$HOME" ] && export HOME=`grep $USER /etc/passwd | cut -d : -f 6`
-[ -z "$HOSTNAME" ] && export HOSTNAME=`uname -n`
+export TERM=${TERM:-xterm-color}
+export USER=${USER:-$(id -un)}
+export HOME=${HOME:-$(grep $USER /etc/passwd | cut -d : -f 6)}
+export HOSTNAME=${HOSTNAME:-$(uname -n)}
 
-[ -z "$IFS" ] && export IFS=" \t\n\0"
+export IFS=${IFS:-" \t\n\0"}
 
 #
 # This appears to break my window manager, will revisit
 #
 # _stty=`command -v stty`
 #
-# "$_stty" intr   '^C' 
-# "$_stty" quit   '^\' 
+# "$_stty" intr   '^C'
+# "$_stty" quit   '^\'
 # "$_stty" erase  '^?'
-# "$_stty" kill   '^U' 
-# "$_stty" eof    '^D' 
+# "$_stty" kill   '^U'
+# "$_stty" eof    '^D'
 # "$_stty" start  '^Q'
-# "$_stty" stop   '^S' 
+# "$_stty" stop   '^S'
 # "$_stty" susp   '^Z'
 # "$_stty" rprnt  '^R'
 # "$_stty" werase '^W'
