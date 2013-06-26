@@ -7,7 +7,7 @@ export RLWRAP="`command -v rlwrap` --history-no-dupes 1 --histsize 5000 --histor
 
 
 typeset -U cmds 
-cmds=( v8 clj guile scala sbcl js )
+cmds=( v8 clj guile scala sbcl js sqlite sqlite3 )
 
 for cmd in ${cmds}; do
     [ -n "`command -v $cmd`" ] && alias $cmd="$RLWRAP $RLWRAP_HOME/${cmd}_history `command -v $cmd`"
