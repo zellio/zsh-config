@@ -20,7 +20,7 @@ is_ssh_shell() {
 typeset -Ag T R S
 
 case "$TERM" in
-    xterm-256color | fbterm)
+    xterm-256color | fbterm | screen-256color)
         T=( BINDER %F{033} USER %F{081} HOST %F{166} PATH %F{147} )
         R=( DEV %F{082} STAGE %F{226} PROD %F{196} )
         S=( LCL %f SSH %F{081} VRT %F{201} ) 

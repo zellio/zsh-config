@@ -1,16 +1,16 @@
 #!/usr/bin/env zsh
 
 case "$TERM" in
-xterm*)
-  if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-    export TERM=xterm-256color
-  elif [ -e /usr/share/terminfo/x/xterm-color ]; then
-    export TERM=xterm-color;
-  else 
-    export TERM=xterm
-  fi
-  ;;
-linux)
-  [ -n "$FBTERM" ] && export TERM=fbterm
-  ;;
+    xterm*)
+        for _term in xterm-256color xterm-color xterm; do
+            infocmp "$_term" 2>&1 > /dev/null
+            if [ "$?" -eq 0 ]; then
+                export TERM="$_term"
+                break
+            fi
+        done
+        ;;
+    linux)
+        [ -n "$FBTERM" ] && export TERM=fbterm
+        ;;
 esac
