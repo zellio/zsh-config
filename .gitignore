@@ -11,9 +11,10 @@
 !/install.zsh
 !/zshrc
 
-!/config/
+!/zsh-config/
+!/app-config/
 !/theme/
 !/function/
 !/completion/
 
-/config/custom.zsh
+/zsh-config/custom.zsh
