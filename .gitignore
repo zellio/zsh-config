@@ -6,15 +6,14 @@
 !LICENSE
 !README.md
 
-!/env.zsh
 !/init.zsh
 !/install.zsh
 !/zshrc
+!/zshenv
 
-!/zsh-config/
-!/app-config/
+!/config/
 !/theme/
-!/function/
-!/completion/
+!/functions/
+!/completions/
 
-/zsh-config/custom.zsh
+/config/custom.zsh
