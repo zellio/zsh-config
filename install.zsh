@@ -12,3 +12,7 @@ mkdir -p "$ZSH_ROOT/cache"
 mkdir -p "$ZSH_ROOT/functions"
 mkdir -p "$ZSH_ROOT/completions"
 mkdir -p "$ZSH_ROOT/custom"
+
+cd $ZSH_ROOT
+
+git submodule update --init --recursive
