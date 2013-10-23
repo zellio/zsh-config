@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 
-source ./zshenv
+ZSH_ROOT=${$(realpath $0):h}
+
+
+source $ZSH_ROOT/zshenv
 
 ln -s "$ZSH_ROOT/zshenv" "$HOME/.zshenv"
 ln -s "$ZSH_ROOT/zshrc" "$HOME/.zshrc"
