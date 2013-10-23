@@ -15,5 +15,6 @@
 !/theme/
 !/functions/
 !/completions/
+!/vendor/
 
 /config/custom.zsh
