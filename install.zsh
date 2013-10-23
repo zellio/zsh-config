@@ -2,7 +2,6 @@
 
 ZSH_ROOT=${$(realpath $0):h}
 
-
 source $ZSH_ROOT/zshenv
 
 ln -s "$ZSH_ROOT/zshenv" "$HOME/.zshenv"
