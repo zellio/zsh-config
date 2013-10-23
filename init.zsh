@@ -4,12 +4,12 @@
 safe_source "$ZSH_CUSTOM/pre_init.zsh"
 
 
-fpath=( $ZSH_ROOT/function $ZSH_ROOT/completion $fpath )
+fpath=( $ZSH_ROOT/functions $ZSH_ROOT/completion $fpath )
 
 
 for conf ($ZSH_ROOT/zsh-config/*.zsh); source "$conf"
 
-for fun in $(\ls $ZSH_ROOT/function/); autoload "$fun"
+for fn in $(\ls $ZSH_ROOT/functions); autoload "$fn"
 
 for comp in $(\ls $ZSH_ROOT/completion); autoload "$comp"
 
