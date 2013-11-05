@@ -1,0 +1,115 @@
+local VERSION=0.1.0 basename=$(\basename $0)
+
+usage() {
+    \cat <<EOF
+Usage: ${basename} [OPTION]... [HOST]...
+
+Specific options:
+    -a, --action HOST                Command to run in foreign shell
+    -o, --options OPTIONS            String of options for ssh
+    -p, --port PORT                  Default port number
+    -s, --session NAME               Tmux session name (${basename})
+    -t, --title TITLE                Title header for tmux frames
+    -u, --user USERNAME              Default foreign username
+
+General options:
+        --debug                      Turn on xtrace
+    -h, --help                       Display this help message.
+        --version                    Display the version number
+
+${basename} home page: <>
+Report bugs to: <>
+
+EOF
+}
+
+version() {
+    \cat <<EOF
+${VERSION}
+EOF
+}
+
+error() {
+    \echo -n "$fg_bold[red]>>> ERROR: "
+    \echo -n $1
+    \echo "$reset_color"
+}
+
+if [[ -z "$(command -v tmux)" ]]; then
+    error "program tmux not found. tmux require for ${basename}"
+    return 1
+fi
+
+local -A options
+local -a debug help version action user port opts title session new_session
+zparseopts -D -A options \
+    d=debug -debug=debug \
+    h=help -help=help \
+    -version=version \
+    a:=action --action:=action \
+    u:=user -user:=user \
+    p:=port -port:=port \
+    o:=opts -options:=opts \
+    t:=title -title:=title \
+    s:=session -session:=session
+    # n:=new_session -new-session=new_session
+
+[[ -n "$debug" ]] && setopt xtrace
+
+[[ -n "$help" ]] && { usage; return 0; }
+[[ -n "$version" ]] && { version; return 0; }
+
+local session_name=${options[--session]:=${options[-s]:=${basename}}}
+
+local session_exists=$(\tmux ls -F "#{session_name}" 2> /dev/null |
+    \grep -P "^${session_name}$")
+
+if [[ -n "$session_exists" ]]; then
+    error "session \"${session_name}\" already exists";
+    return 1
+fi
+
+typeset -a hosts
+hosts=( "$@" )
+
+if [ -z "$hosts" ]; then
+    error "no hosts provided"
+    return 1
+fi
+
+local ssh_cmd="ssh"
+
+if [ -n "$user" ]; then
+    user=${options[--user]:=$options[-u]}
+    ssh_cmd="$ssh_cmd -l $user"
+fi
+
+if [ -n "$port" ]; then
+    port=${options[--port]:=$options[-p]}
+    ssh_cmd="$ssh_cmd -p $port"
+fi
+
+if [ -n "$action" ]; then
+    action=${options[--action]:=$options[-a]}
+fi
+
+if [ -n "$opts" ]; then
+    opts=${options[--options]:=$options[-o]}
+    ssh_cmd="$ssh_cmd -o \"$opts\""
+fi
+
+local first_run
+for host in $hosts; do
+    echo "$ssh_cmd $host"
+
+    if [ -z "$first_run" ]; then
+        \tmux new-session -d -s ${session_name} "$ssh_cmd $host"
+        first_run=true
+    fi
+
+    \tmux split-window -t ${session_name} "$ssh_cmd $host"
+    \tmux select-layout -t ${session_name} tiled
+done
+
+\tmux set-window-option -t ${session_name} synchronize-panes on
+\tmux attach-session -t ${session_name}
