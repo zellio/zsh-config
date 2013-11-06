@@ -56,8 +56,8 @@ General options:
     -h, --help                       Display this help message.
         --version                    Display the version number
 
-${basename} home page: <>
-Report bugs to: <>
+${basename} home page: <https://github.com/zellio/zsh-config>
+Report bugs to: <https://github.com/zellio/zsh-config/issues>
 
 EOF
 }
