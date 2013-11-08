@@ -81,6 +81,10 @@ if [[ -z "$(command -v tmux)" ]]; then
     return 1
 fi
 
+# Handle no args
+[[ -z "$@" ]] && { usage; return 0; }
+
+
 # Run zparseopts to extrace command flags
 #  - Everything left over is considered to be a hostname
 
@@ -156,10 +160,10 @@ for host in $hosts; do
     if [ -z "$first_run" ]; then
         \tmux new-session -d -s ${session_name} "$ssh_cmd $host"
         first_run=true
+    else
+        \tmux split-window -t ${session_name} "$ssh_cmd $host"
+        \tmux select-layout -t ${session_name} tiled
     fi
-
-    \tmux split-window -t ${session_name} "$ssh_cmd $host"
-    \tmux select-layout -t ${session_name} tiled
 done
 
 \tmux set-window-option -t ${session_name} synchronize-panes on
