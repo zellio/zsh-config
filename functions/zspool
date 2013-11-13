@@ -2,7 +2,7 @@ local f_target
 
 case "$1" in
     [Oo][Nn])
-        [ -z "$2" ] && f_target="zspool.out" || target="$2"
+        [ -z "$2" ] && f_target="zspool.out" || f_target="$2"
 
         export ZSPOOL_TARGET=$(realpath "$f_target")
 
