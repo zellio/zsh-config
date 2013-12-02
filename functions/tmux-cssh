@@ -155,8 +155,6 @@ fi
 
 local first_run
 for host in $hosts; do
-    echo "$ssh_cmd $host"
-
     if [ -z "$first_run" ]; then
         \tmux new-session -d -s ${session_name} "$ssh_cmd $host"
         first_run=true
