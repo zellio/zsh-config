@@ -1,7 +1,6 @@
-
 ### tmux-cssh --- light cssh implementation using zsh and tmux
 
-## Copyright (c) 2013 New York University
+## Copyright (c) 2013 Zachary Elliott
 ##
 ## Authors: Zachary Elliott <zach@nyu.edu>
 ## URL: https://github.com/zellio/zsh-config/blob/master/functions/tmux-cssh
