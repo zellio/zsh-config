@@ -1,0 +1,17 @@
+#compdef txcssh
+
+local args 
+args=(
+  '(--action -a)'{--action=,-a+}'[Command to run in foreign shell]:_command_names -e'
+  '(--options -o)'{--options=,-o}'[String of options for ssh]'
+  '(--port -p)'{--port=,-p+}'[Default port number]'
+  '(--session -s)'{--session=,-s+}'[Tmux session name (txcssh)]'
+  '(--title -t)'{--title=,-t+}'[Title header for tmux frames]'
+  '(--user -u)'{--user=,-u+}'[Default username]'
+  '--debug[Turn on xtrace]'
+  '(--help -h)'{--help,-h}'[Display help message]'
+  '--version[Display the version number]'
+  '*:remote:_hosts'
+)
+
+_arguments -Ss "$args[@]"
