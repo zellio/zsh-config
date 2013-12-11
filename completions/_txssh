@@ -1,4 +1,4 @@
-#compdef txcssh
+#compdef txssh
 
 local args 
 args=(
@@ -14,4 +14,4 @@ args=(
   '*:remote:_hosts'
 )
 
-_arguments -Ss "$args[@]"
+_arguments -Ss $args[@]

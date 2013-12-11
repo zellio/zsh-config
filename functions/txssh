@@ -1,10 +1,10 @@
-### txcssh --- light cssh implementation using zsh and tmux
+### txssh --- light cssh implementation using zsh and tmux
 
 ## Copyright (c) 2013 Zachary Elliott
 ##
 ## Authors: Zachary Elliott <zach@nyu.edu>
-## URL: https://github.com/zellio/zsh-config/blob/master/functions/txcssh
-## Version: 0.1.1
+## URL: https://github.com/zellio/zsh-config/blob/master/functions/txssh
+## Version: 0.1.2
 
 ### Commentary:
 
@@ -36,7 +36,7 @@
 
 ### Code:
 
-local VERSION=0.1.0 basename=$(\basename $0)
+local VERSION=0.1.2 basename=$(\basename $0)
 
 usage() {
     \cat <<EOF
