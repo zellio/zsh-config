@@ -2,16 +2,17 @@
 
 ZSH_ROOT=${$(realpath $0):h}
 
-source $ZSH_ROOT/zshenv
+source $ZSH_ROOT/dotfiles/zshenv
 
-ln -s "$ZSH_ROOT/zshenv" "$HOME/.zshenv"
-ln -s "$ZSH_ROOT/zshrc" "$HOME/.zshrc"
+ZDOTFILES="${ZSH_ROOT}/dotfiles"
 
-mkdir -p "$ZSH_ROOT/data"
-mkdir -p "$ZSH_ROOT/cache"
-mkdir -p "$ZSH_ROOT/functions"
-mkdir -p "$ZSH_ROOT/completions"
-mkdir -p "$ZSH_ROOT/custom"
+for config ($ZSH_ROOT/dotfiles/*); do
+    ln -s "${config}" "${HOME}/.${config:t}"
+done
+
+for dir (data cache functions completions custom); do
+    mkdir -p "${ZSH_ROOT}/${dir}"
+done
 
 cd $ZSH_ROOT
 

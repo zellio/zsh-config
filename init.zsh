@@ -13,7 +13,7 @@ for comp ($ZSH_ROOT/completions/***/*(.)); autoload $comp:t
 for conf ($ZSH_ROOT/config/*\.zsh); source $conf
 
 autoload -U compinit
-compinit -i
+compinit -i -d "$ZSH_ROOT/data/zcompdump"
 
 source "$ZSH_ROOT/theme/theme"
 
