@@ -1,6 +1,7 @@
+
 ### txssh --- light cssh implementation using zsh and tmux
 
-## Copyright (c) 2013 Zachary Elliott
+## Copyright (c) 2013-2014 Zachary Elliott
 ##
 ## Authors: Zachary Elliott <zach@nyu.edu>
 ## URL: https://github.com/zellio/zsh-config/blob/master/functions/txssh
@@ -93,7 +94,7 @@ zparseopts -D -A options \
     d=debug -debug=debug \
     h=help -help=help \
     -version=version \
-    a:=action --action:=action \
+    a:=action -action:=action \
     u:=user -user:=user \
     p:=port -port:=port \
     o:=opts -options:=opts \
@@ -131,7 +132,7 @@ if [ -z "$hosts" ]; then
     return 1
 fi
 
-local ssh_cmd="ssh"
+local ssh_cmd="$(command -v ssh)"
 
 if [ -n "$user" ]; then
     user=${options[--user]:=$options[-u]}
@@ -155,10 +156,10 @@ fi
 local first_run
 for host in $hosts; do
     if [ -z "$first_run" ]; then
-        \tmux new-session -d -s ${session_name} "$ssh_cmd $host"
+        \tmux new-session -d -s ${session_name} "$ssh_cmd $host $action"
         first_run=true
     else
-        \tmux split-window -t ${session_name} "$ssh_cmd $host"
+        \tmux split-window -t ${session_name} "$ssh_cmd $host $action"
         \tmux select-layout -t ${session_name} tiled
     fi
 done
