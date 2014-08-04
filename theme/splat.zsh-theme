@@ -3,7 +3,7 @@
 is_virtual_machine() {
     if [ -f /etc/.qemu_device ]; then
         return 0;
-    fi 
+    fi
 
     return 1;
 }
@@ -14,21 +14,21 @@ is_ssh_shell() {
     fi
 
     return 1;
-}         
+}
 
 
 typeset -Ag T R S
 
 case "$TERM" in
     xterm-256color | fbterm | screen-256color)
-        T=( BINDER %F{033} USER %F{081} HOST %F{166} PATH %F{147} )
+        T=( BINDER %F{033} USER %F{081} HOST %F{166} PATH %F{147} GIT %F{124} )
         R=( DEV %F{082} STAGE %F{226} PROD %F{196} )
-        S=( LCL %f SSH %F{081} VRT %F{201} ) 
+        S=( LCL %f SSH %F{081} VRT %F{201} )
       ;;
     *)
         T=( BINDER %B%F{004} USER %B%F{006} HOST %F{005} PATH %F{002} )
         R=( DEV %F{002} STAGE %B%F{003} PROD %B%F{001} )
-        S=( LCL %f SSH %F{006} VRT %F{005} ) 
+        S=( LCL %f SSH %F{006} VRT %F{005} )
       ;;
 esac
 
