@@ -65,15 +65,33 @@ autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr 'AA'
-zstyle ':vcs_info:git:*' unstagedstr 'BB'
-zstyle ':vcs_info:git:*' formats "$T[BINDER][$T[HOST]%s$T[BINDER] $T[GIT]%b$T[BINDER]]%f"
-zstyle ':vcs_info:git:*' actionformats "$T[BINDER][$T[HOST]%s$T[BINDER] $T[GIT]%b$T[BINDER]:$T[GIT]%a$T[BINDER]]%f"
+zstyle ':vcs_info:git:*' stagedstr "$R[DEV]■%f"
+zstyle ':vcs_info:git:*' unstagedstr "$R[STAGE]■%f"
+zstyle ':vcs_info:git:*' formats "$T[BINDER][$T[HOST]±$T[BINDER] %c%u$T[HOST]$T[GIT]%b$T[BINDER]]%f "
+zstyle ':vcs_info:git:*' actionformats "$T[BINDER][$T[HOST]±$T[BINDER] %c%u$T[HOST]$T[GIT]%b$T[BINDER]:$T[GIT]%a$T[BINDER]]%f "
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-status-cleanup
 
-precmd () { vcs_info }
+function +vi-git-untracked() {
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep '??' &> /dev/null ; then
+        hook_com[unstaged]+="$R[PROD]■%f"
+    fi
+}
 
-PROMPT="$PROMPT$T[BINDER]) $T[USER]%n$T[BINDER]@$T[HOST]%m$T[BINDER]:$T[PATH]%~"
-PROMPT="$PROMPT \${vcs_info_msg_0_} $T[BINDER]%#%f%b "
+function +vi-git-status-cleanup() {
+    if [ -n "$hook_com[unstaged]" ]; then
+        hook_com[unstaged]+=' '
+    elif [ -n "$hook_com[staged]" ]; then
+        hook_com[staged]+=' '
+    fi
+}
+
+function precmd() {
+    vcs_info
+}
+
+PROMPT="$PROMPT$T[BINDER]) $T[USER]%n$T[BINDER]@$T[HOST]%m$T[BINDER]:$T[PATH]%~ "
+PROMPT="$PROMPT\${vcs_info_msg_0_}$T[BINDER]%#%f%b "
 export PROMPT
 
 return 0
