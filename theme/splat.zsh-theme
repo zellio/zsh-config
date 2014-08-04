@@ -61,8 +61,19 @@ else
 fi
 PROMPT="$PROMPT●"
 
+autoload -Uz vcs_info
 
-PROMPT="$PROMPT$T[BINDER]) $T[USER]%n$T[BINDER]@$T[HOST]%m$T[BINDER]:$T[PATH]%~ $T[BINDER]%#%f%b "
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr 'AA'
+zstyle ':vcs_info:git:*' unstagedstr 'BB'
+zstyle ':vcs_info:git:*' formats "$T[BINDER][$T[HOST]%s$T[BINDER] $T[GIT]%b$T[BINDER]]%f"
+zstyle ':vcs_info:git:*' actionformats "$T[BINDER][$T[HOST]%s$T[BINDER] $T[GIT]%b$T[BINDER]:$T[GIT]%a$T[BINDER]]%f"
+
+precmd () { vcs_info }
+
+PROMPT="$PROMPT$T[BINDER]) $T[USER]%n$T[BINDER]@$T[HOST]%m$T[BINDER]:$T[PATH]%~"
+PROMPT="$PROMPT \${vcs_info_msg_0_} $T[BINDER]%#%f%b "
 export PROMPT
 
 return 0
