@@ -10,7 +10,7 @@ for fn ($ZSH_ROOT/functions/***/*(.)); autoload $fn:t
 
 for comp ($ZSH_ROOT/completions/***/*(.)); autoload $comp:t
 
-for conf ($ZSH_ROOT/config/*\.zsh); source $conf
+for conf ($ZSH_ROOT/custom/*\.zsh); source $conf
 
 autoload -U compinit
 compinit -i -d "$ZSH_ROOT/data/zcompdump"
