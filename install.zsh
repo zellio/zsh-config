@@ -6,7 +6,7 @@ source $ZSH_ROOT/dotfiles/zshenv
 
 ZDOTFILES="${ZSH_ROOT}/dotfiles"
 
-for config ($ZSH_ROOT/dotfiles/*); do
+for config ($ZSH_ROOT/dotfiles/*(.)); do
     ln -s "${config}" "${HOME}/.${config:t}"
 done
 

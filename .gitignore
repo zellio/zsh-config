@@ -8,13 +8,12 @@
 
 !/init.zsh
 !/install.zsh
-!/zshrc
-!/zshenv
 
 !/config/
 !/theme/
 !/functions/
 !/completions/
 !/vendor/
+!/dotfiles/
 
 /config/custom.zsh

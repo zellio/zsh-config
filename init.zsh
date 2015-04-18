@@ -4,7 +4,7 @@ safe_source "$ZSH_CUSTOM/pre_init.zsh"
 
 fpath=( $ZSH_ROOT/functions/***/(-/) $ZSH_ROOT/completions/***/(-/) $fpath )
 
-for config ($ZSH_ROOT/config/zsh/*\.zsh); source $config
+for config ($ZSH_ROOT/config/**/*\.zsh); source $config
 
 for fn ($ZSH_ROOT/functions/***/*(.)); autoload $fn:t
 
