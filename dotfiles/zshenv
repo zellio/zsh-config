@@ -5,6 +5,12 @@ function safe_source
 	[[ -a "$1" ]] && source "$1"
 }
 
+function is_installed
+{
+	command -v "$1" >/dev/null 2>&1
+	return "$?"
+}
+
 export TERM=${TERM:-xterm-color}
 export USER=${USER:-$(id -un)}
 export HOME=${HOME:-$(grep $USER /etc/passwd | cut -d : -f 6)}

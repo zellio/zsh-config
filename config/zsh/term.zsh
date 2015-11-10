@@ -11,6 +11,9 @@ case "$TERM" in
         done
         ;;
     linux)
-        [ -n "$FBTERM" ] && export TERM=fbterm
+		# this hack makes me sad
+		if [[ "$(tty)" != /dev/tty* ]]; then
+			export TERM=fbterm
+		fi
         ;;
 esac
