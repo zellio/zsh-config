@@ -10,8 +10,7 @@ setopt pushd_to_home
 setopt extended_glob
 
 
-unset common_paths
-typeset -U common_paths
+typeset -U comman_paths
 common_paths=(
     ${path/%\//} ${=$(command -p getconf PATH)//:/ }
     /usr/bin /bin /usr/sbin /sbin
@@ -28,25 +27,16 @@ common_paths=(
     /usr/games /usr/local/games /usr/games/bin        # fun stuff
     /sw/bin /sw/sbin /sw/usr/bin /sw/usr/sbin         # Fink
     /opt/usr/bin /opt/bin /opt/usr/sbin /opt/sbin     # Darwin Ports
-    "$HOME/bin" "$HOME/.rvn/bin"                      # Personal Executables
+    "$HOME/bin" "$HOME/.rvn/bin" "$HOME/.bin"         # Personal Executables
 )
 
-
-# if [ -n "`command -v gem`" ]; then
-#     typeset -U gem_paths
-#     gem_paths=( ${=$(command -p gem environment gempath)//://bin }/bin )
-#     common_paths=( ${common_paths} ${gem_paths} )
-#     unset gem_paths
-# fi
-
-
-unset PATH node
-for node in ${common_paths}; do
-    if [ -d "$node" ]; then
-        [ -n "$PATH" ] && PATH="$PATH:$node" || PATH="$node"
-    fi
+PATH=
+for dir in "${common_paths[@]}"; do
+	if [ -d "$dir" ]; then
+		PATH="$PATH:$dir"
+	fi
 done
-unset common_paths node
 
+PATH="${PATH:1}"
 
 export PATH
