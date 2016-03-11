@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+source "${ZSH_HOME}/init.zsh"

@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+
+export TERM="${TERM:-xterm-color}"
+export USER="${USER:-$(id -un)}"
+export HOME="${HOME:-$(getent passwd "$USER" | cut -d: -f6)}"
+export HOSTNAME="${HOSTNAME:-$(uname -n)}"
+export IFS="${IFS:-$' \t\n\0'}"
+
+export ZSH_HOME="${"${(%):-%N}":A:h:h}"
+
+function safe_source
+{
+	[ -a "$1" ] && source "$1"
+}
+
+function is_installed
+{
+	command -v "$1" >/dev/null 2>&1
+}
+
+is_installed systemctl &&
+	eval $(/usr/bin/systemctl --user show-environment 2>/dev/null)
