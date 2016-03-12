@@ -10,20 +10,20 @@ setopt pushd_minus
 setopt pushd_silent
 setopt pushd_to_home
 
-typeset -U common_paths
 comman_paths=(
-	${path/%\//} ${=$(command -p getconf PATH)//:/ }
+	"${HOME}/bin" "${HOME}/.bin"
+	/usr/local/bin /usr/local/sbin
 	/usr/bin /usr/sbin
 	/bin /sbin
-	/usr/local/bin /usr/local/sbin
-	"${HOME}/bin" "${HOME}/.bin"
+	${path/%\//} ${=$(command -p getconf PATH)//:/ }
 )
 
 PATH=
-for dir in "${common_paths[@]}"; do {
-	[ -d "$dir" ] && PATH+=":$dir"
-}; done
+for dir in "${comman_paths[@]}"; do
+	if [ -d "$dir" ]; then
+		PATH="$PATH:$dir"
+	fi
+done
+typeset -U PATH
 
-PATH="${PATH:1}"
-
-export PATH
+export PATH="${PATH:1}"
