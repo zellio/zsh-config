@@ -9,5 +9,3 @@ setopt long_list_jobs
 # setopt monitor
 setopt notify
 setopt NO_posix_jobs
-
-alias jobs='jobs -l'
