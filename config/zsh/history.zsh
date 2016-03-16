@@ -22,6 +22,6 @@ setopt inc_append_history
 setopt NO_inc_append_history_time
 setopt share_history
 
-HISTFILE="$ZSH_ROOT/data/history"
+HISTFILE="${ZSH_HOME}/data/history"
 HISTSIZE=10000
 SAVEHIST=10000
