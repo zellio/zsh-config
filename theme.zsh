@@ -24,40 +24,36 @@ function is_virtual_machine
 }
 
 
-typeset -A prompt_colours machine_colours
+typeset -A prompt_colours prompt_colours
 case "$TERM" in
 	*-256color | fbterm)
 		prompt_colours=(
 			binder '%F{033}' user '%F{081}' host '%F{166}' path '%F{147}'
-			git '%F{124}'
-		)
-
-		machine_colours=(
-			metal '%f' ssh '%F{081}' container '%F{201}' virtual '%F{226}'
+			git '%F{124}' metal '%f' container '%F{201}' vm '%F{226}'
+			ssh '%F{081}'
 		)
 		;;
 	*)
 		prompt_colours=(
 			binder '%B%F{004}' user '%B%F{006}' host '%F{005}' path '%F{002}'
-			git '%F{005}'
-		)
-
-		machine_colours=(
-			metal '%f' ssh '%F{006}' container '%F{005}' vm '%F{003}'
+			git '%F{005}' metal '%f' container '%F{005}' vm '%F{003}'
+			ssh '%F{006}'
 		)
 		;;
 esac
 
 PROMPT="%{$prompt_colours[binder]%}(%{%f%}●"
 
+if is_ssh_shell; then
+	PROMPT+="%{$prompt_colours[ssh]%}●"
+fi
+
 if is_container; then
-	PROMPT+="%{$machine_colours[container]%}"
+	PROMPT+="%{$prompt_colours[container]%}"
 elif is_virtual_machine; then
-	PROMPT+="%{$machine_colours[vm]%}"
-elif is_ssh_shell; then
-	PROMPT+="%{$machine_colours[ssh]%}"
+	PROMPT+="%{$prompt_colours[vm]%}"
 else
-	PROMPT+="%{$machine_colours[metal]%}"
+	PROMPT+="%{$prompt_colours[metal]%}"
 fi
 
 PROMPT+='●'
