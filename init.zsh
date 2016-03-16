@@ -20,4 +20,4 @@ autoload -U compinit
 
 compinit -i -d "${ZSH_HOME}/data/zcompdump"
 
-source "${ZSH_HOME}/config/theme.zsh"
+source "${ZSH_HOME}/theme.zsh"
