@@ -35,7 +35,7 @@ case "$TERM" in
 		machine_colours=(
 			metal '%f' ssh '%F{081}' container '%F{201}' virtual '%F{226}'
 		)
-	;;
+		;;
 	*)
 		prompt_colours=(
 			binder '%B%F{004}' user '%B%F{006}' host '%F{005}' path '%F{002}'
@@ -45,7 +45,7 @@ case "$TERM" in
 		machine_colours=(
 			metal '%f' ssh '%F{006}' container '%F{005}' vm '%F{003}'
 		)
-	;;
+		;;
 esac
 
 PROMPT="%{$prompt_colours[binder]%}(%{%f%}●"
@@ -82,11 +82,11 @@ function +vi-git-untracked
 
 function +vi-git-status-cleanup
 {
-    if [ -n "$hook_com[unstaged]" ]; then
-        hook_com[unstaged]+=' '
-    elif [ -n "$hook_com[staged]" ]; then
-        hook_com[staged]+=' '
-    fi
+	if [ -n "$hook_com[unstaged]" ]; then
+		hook_com[unstaged]+=' '
+	elif [ -n "$hook_com[staged]" ]; then
+		hook_com[staged]+=' '
+	fi
 }
 
 function +vi-git-remote-status
@@ -114,9 +114,8 @@ zstyle ':vcs_info:git:*' formats "%{$prompt_colours[binder]%}[%{$prompt_colours[
 zstyle ':vcs_info:git:*' actionformats "%{$prompt_colours[binder]%}[%{$prompt_colours[host]%}± %c%u%{$prompt_colours[git]%}%b%{$prompt_colours[binder]%}:%{$prompt_colours[git]%}%a%{$prompt_colours[binder]%}]%{%f%} "
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-status-cleanup git-remote-status
 
-
 function precmd() {
-    vcs_info
+	vcs_info
 }
 
 PROMPT+="\${vcs_info_msg_0_}%{$prompt_colours[binder]%}%#%{%f%b%} "
