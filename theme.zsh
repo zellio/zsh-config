@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 
-function is_chroot
-{
-	is_installed systemd-detect-virt &&
-		systemd-detect-virt --chroot --quiet
-}
+# function is_chroot
+# {
+# 	is_installed systemd-detect-virt &&
+# 		systemd-detect-virt --chroot --quiet
+# }
 
 function is_container
 {
@@ -50,9 +50,7 @@ esac
 
 PROMPT="%{$prompt_colours[binder]%}(%{%f%}●"
 
-if is_chroot; then
-	PROMPT+="%{$machine_colours[chroot]%}"
-elif is_container; then
+if is_container; then
 	PROMPT+="%{$machine_colours[container]%}"
 elif is_virtual_machine; then
 	PROMPT+="%{$machine_colours[vm]%}"
@@ -66,7 +64,7 @@ PROMPT+='●'
 PROMPT+="%{$prompt_colours[binder]%}) "
 PROMPT+="%{$prompt_colours[user]%}%n"
 PROMPT+="%{$prompt_colours[binder]%}@"
-PROMPT+="%{$prompt_colours[host]%}%M"
+PROMPT+="%{$prompt_colours[host]%}%m"
 PROMPT+="%{$prompt_colours[binder]%}:"
 PROMPT+="%{$prompt_colours[path]%}%~%{%f%} "
 
