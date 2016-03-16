@@ -110,8 +110,8 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%{%F{green}%}■%{%f%}"
 zstyle ':vcs_info:git:*' unstagedstr "%{%F{yellow}%}■%{%f%}"
-zstyle ':vcs_info:git:*' formats "%{$prompt_colours[binder]%}[%{$prompt_colours[git]%}± %c%u%{$prompt_colours[git]%}%b%m%{$prompt_colours[binder]%}]%{%f%} "
-zstyle ':vcs_info:git:*' actionformats "%{$prompt_colours[binder]%}[%{$prompt_colours[git]%}± %c%u%{$prompt_colours[git]%}%b%{$prompt_colours[binder]%}:%{$prompt_colours[git]%}%a%{$prompt_colours[binder]%}]%{%f%} "
+zstyle ':vcs_info:git:*' formats "%{$prompt_colours[binder]%}[%{$prompt_colours[host]%}± %c%u%{$prompt_colours[git]%}%b%m%{$prompt_colours[binder]%}]%{%f%} "
+zstyle ':vcs_info:git:*' actionformats "%{$prompt_colours[binder]%}[%{$prompt_colours[host]%}± %c%u%{$prompt_colours[git]%}%b%{$prompt_colours[binder]%}:%{$prompt_colours[git]%}%a%{$prompt_colours[binder]%}]%{%f%} "
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-status-cleanup git-remote-status
 
 
