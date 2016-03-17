@@ -6,9 +6,10 @@ fpath=(
 	$fpath
 )
 
-for config ( "${ZSH_HOME}/config"/**/*.zsh(N)
+for config ( "${ZSH_HOME}/config"/zsh/*.zsh(N)
+			 "${ZSH_HOME}/config"/*.zsh(N)
 			 "${ZSH_HOME}/custom"/**/*.zsh(N) ); do
-    source "$config:A"
+	source "$config:A"
 done
 
 for func ( "${ZSH_HOME}/functions"/***/*(.N)
