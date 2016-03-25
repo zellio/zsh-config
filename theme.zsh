@@ -94,7 +94,7 @@ function +vi-git-remote-status
 	behind="$(git rev-list HEAD.."$remote" 2>/dev/null | wc -l)"
 
 	(( ahead )) && git_status+=( "+$ahead" )
-	(( behind )) && git_status+=( "+$behind" )
+	(( behind )) && git_status+=( "-$behind" )
 
 	(( $#git_status )) &&
 		hook_com[misc]+=" %{%F{green}%}${(pj:/:)git_status}%{%f%}"
