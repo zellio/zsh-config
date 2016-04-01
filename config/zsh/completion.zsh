@@ -74,6 +74,7 @@ zstyle ':completion:*:hosts' hosts $hosts
 
 users=(
 	$(awk -F: '$3 >= 1000{print $1}' /etc/passwd)
+	root
 )
 
 zstyle ':completion:*:*:*:users' users $users
