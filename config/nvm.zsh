@@ -2,7 +2,7 @@
 
 NVM_DIR="${HOME}/.nvm"
 
-[ ! -d "$NVM_DIR" ] && retrun 0
+[ ! -d "$NVM_DIR" ] && return 0
 
 export NVM_DIR
 
