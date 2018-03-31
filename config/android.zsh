@@ -1,11 +1,14 @@
 #!/usr/bin/env zsh
 
-ANDROID_HOME="${HOME}/.android"
+ANDROID_HOME="${:-$HOME/.android/sdk}"
 
-[ ! -d "$ANDROID_HOME" ] && return 0
+[ -d "$ANDROID_HOME" ] || return
 
-PATH+=":${ANDROID_HOME}/tools"
-PATH+=":${ANDROID_HOME}/tools/bin"
-PATH+=":${ANDROID_HOME}/platform-tools"
+for dir ( "$ANDROID_HOME/"***/bin(F^M)
+		  "$ANDROID_HOME/"***/*tools*(F^M) ); do
+	PATH="$PATH:$dir"
+done
+typeset -U PATH
 
-export ANDROID_HOME PATH
+export PATH
+export ANDROID_HOME
