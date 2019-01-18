@@ -4,13 +4,13 @@ is_installed rlwrap || return
 
 function rlwrap_wrapper
 {
-	local cmd="$1"
-
-	rlwrap \
-		--history-no-dupes 1 \
-		--histsize 5000 \
-		--history-filename "${HOME}/.rlwrap.d/${cmd}_history" \
-		"$cmd"
+	local command="$1"                                                                                                                                                                      
+                                                                                                                                                                                          
+	rlwrap \                                                                                                                                                                                
+		--history-no-dupes 1 \                                                                                                                                                                
+		--histsize 10000 \                                                                                                                                                                    
+		--history-filename "${HOME}/.rlwrap.d/${command}_history" \                                                                                                                           
+		-- "$@"     
 }
 
 _cmds=(
