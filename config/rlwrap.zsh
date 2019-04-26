@@ -2,15 +2,19 @@
 
 is_installed rlwrap || return
 
+export RLWRAP_HOME="${RLWRAP_HOME:-$HOME/.rlwrap.d}"
+
+[ ! -d "${RLWRAP_HOME}" ] && mkdir "${RLWRAP_HOME}"
+
 function rlwrap_wrapper
 {
-	local command="$1"                                                                                                                                                                      
-                                                                                                                                                                                          
-	rlwrap \                                                                                                                                                                                
-		--history-no-dupes 1 \                                                                                                                                                                
-		--histsize 10000 \                                                                                                                                                                    
-		--history-filename "${HOME}/.rlwrap.d/${command}_history" \                                                                                                                           
-		-- "$@"     
+	local command="$1"
+
+	rlwrap \
+		--history-no-dupes 1 \
+		--histsize 100000 \
+		--history-filename "${RLWRAP_HOME}/${command}_history" \
+		-- "$@"
 }
 
 _cmds=(
