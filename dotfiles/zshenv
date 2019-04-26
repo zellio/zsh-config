@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 export TERM="${TERM:-xterm-color}"
+export TERMINAL="${TERMINAL:-xterm}"
 export USER="${USER:-$(id -un)}"
 export HOME="${HOME:-$(getent passwd "$USER" | cut -d: -f6)}"
 export HOSTNAME="${HOSTNAME:-$(uname -n)}"
