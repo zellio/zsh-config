@@ -12,7 +12,7 @@ setopt NO_force_float
 setopt glob
 setopt NO_glob_assign
 setopt NO_glob_dots
-setopt NO_glob_star_short
+setopt glob_star_short
 setopt NO_glob_subst
 setopt hist_subst_pattern
 setopt NO_ignore_braces

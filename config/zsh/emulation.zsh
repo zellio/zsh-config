@@ -14,7 +14,7 @@ setopt NO_ksh_option_print
 setopt NO_ksh_typeset
 setopt NO_ksh_zero_subscript
 setopt NO_posix_aliases
-setopt NO_posix_argzero
+#setopt NO_posix_argzero
 setopt NO_posix_builtins
 setopt NO_posix_identifiers
 setopt NO_posix_strings

@@ -45,7 +45,7 @@ zstyle ':completion:*:*:*:*:processes' command 'ps --user "$USER" -ww -o pid,tty
 
 [ -r /etc/ssh/ssh_known_hosts ] &&
 	_global_ssh_hosts=(
-		$(ssh-keygen -l -f /etc/ssh/ssh_known_hosts |
+		$(ssh-keygen -l -f /etc/ssh/ssh_known_hosts 2>/dev/null |
 				 awk '{sub(/,/, " ", $3); print $3}' )
 	)
 
@@ -74,6 +74,7 @@ zstyle ':completion:*:hosts' hosts $hosts
 
 users=(
 	$(getent passwd | awk -F: '$3 >= 1000{print $1}')
+	"$USER"
 	root
 )
 

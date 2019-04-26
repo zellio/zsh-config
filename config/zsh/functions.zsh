@@ -8,7 +8,7 @@ setopt NO_err_exit
 setopt eval_lineno
 # setopt exec
 setopt function_argzero
-setopt NO_local_loops
+#setopt NO_local_loops
 setopt NO_local_options
 setopt NO_local_patterns
 setopt no_local_traps
