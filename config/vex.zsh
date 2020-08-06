@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 
-is_installed virtualenv || return
+is_installed virtualenv || test -n "$WORKON_HOME" || return
 
-WORKON_HOME="$HOME/.venv"
-VEX_HOME="$WORKON_HOME/vex"
+WORKON_HOME="${WORKON_HOME:-$HOME/.venv}"
+VEX_HOME="${VEX_HOME:-$WORKON_HOME/vex}"
 
 if [ ! -d "$VEX_HOME" ]; then
     virtualenv "$VEX_HOME"
