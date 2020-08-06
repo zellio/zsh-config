@@ -73,10 +73,12 @@ typeset -U hosts
 zstyle ':completion:*:hosts' hosts $hosts
 
 users=(
-	$(getent passwd | awk -F: '$3 >= 1000{print $1}')
+	# $(getent passwd | awk -F: '$3 >= 1000{print $1}')
 	"$USER"
 	root
 )
+
+typeset -U users
 
 zstyle ':completion:*:*:*:users' users $users
 
