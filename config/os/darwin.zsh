@@ -8,5 +8,3 @@ fpath=(
 for func ( "/usr/local/share/zsh/site-functions"/***/*(.N) ); do
 	autoload "$func:t"
 done
-
-alias ls='LC_COLLATE=C \ls -F -G'
