@@ -12,7 +12,7 @@ setopt pushd_to_home
 
 comman_paths=(
 	"${HOME}/bin" "${HOME}/.bin"
-    /usr/local/opt/coreutils/libexec/gnubin
+	/usr/local/opt/coreutils/libexec/gnubin
 	/usr/local/bin /usr/local/sbin
 	/usr/bin /usr/sbin
 	/bin /sbin
@@ -22,7 +22,7 @@ comman_paths=(
 PATH=
 for dir in "${comman_paths[@]}"; do
 	if [ -d "$dir" ]; then
-        PATH="$PATH:$dir"
+		PATH="$PATH:$dir"
 	fi
 done
 typeset -U PATH

@@ -10,6 +10,6 @@ export NVM_DIR
 # used. Probably want to make this smarter in the future.
 function nvm
 {
-    source "${NVM_DIR}/nvm.sh"
-    nvm "$@"
+	source "${NVM_DIR}/nvm.sh"
+	nvm "$@"
 }
