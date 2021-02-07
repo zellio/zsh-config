@@ -2,4 +2,4 @@
 
 is_installed pyenv || return
 
-WORKON_HOME="$HOME/.venv"
+WORKON_HOME="${WORKON_HOME:-$HOME/.venv}"

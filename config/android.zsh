@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-ANDROID_HOME="${:-$HOME/.android/sdk}"
+ANDROID_HOME="${ANDROID_HOME:-$HOME/.android/sdk}"
 
 [ -d "$ANDROID_HOME" ] || return
 

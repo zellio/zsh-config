@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-GAM_HOME="$HOME/.gam.d"
+GAM_HOME="${GAM_HOME:-HOME/.gam.d}"
 
 [ -d "$GAM_HOME" ] || return
 

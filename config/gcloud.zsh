@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 CLOUDSDK_PYTHON=`which python2`
-GCLOUD_ROOT="${HOME}/.gcloud"
+GCLOUD_ROOT="${GCLOUD_ROOT:-${HOME}/.gcloud}"
 
 [ ! -d "$GCLOUD_ROOT" ] && return
 
