@@ -41,7 +41,7 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:manuals' separate-sections true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
-zstyle ':completion:*:*:*:*:processes' command 'ps --user "$USER" -ww -o pid,tty,args'
+zstyle ':completion:*:*:*:*:processes' command 'ps -U "$USER" -ww -o pid,tty,args'
 
 [ -r /etc/ssh/ssh_known_hosts ] &&
 	_global_ssh_hosts=(

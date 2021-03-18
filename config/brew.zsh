@@ -25,7 +25,7 @@ LDFLAGS="-Wl,-rpath,/usr/local/opt/llvm/lib"
 
 _keg_programs=(
 	'gnu-getopt' 'icu4c' 'libffi' 'libpq' 'llvm' 'ncurses' 'openjdk'
-	'readline' 'sqlite' 'tcl-tk' 'zlib'
+	'readline' 'sqlite' 'tcl-tk' 'zlib' 'openssl'
 )
 
 for program in "${_keg_programs[@]}"; do

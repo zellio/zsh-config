@@ -2,7 +2,7 @@
 
 is_installed pyenv || return
 
-WORKON_HOME="${WORKON_HOME:-$HOME/.venv}"
+export WORKON_HOME="${WORKON_HOME:-$HOME/.venv}"
 
 function __autoload_pyenv
 {
